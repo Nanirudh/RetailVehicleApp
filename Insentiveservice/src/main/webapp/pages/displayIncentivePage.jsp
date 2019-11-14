@@ -10,6 +10,7 @@
     </tr>
 
        <c:forEach var="obj" items="${incentiveObj}">
+         <tr><td>${obj.dealerId}</td></tr>
          <c:forEach var="listVar" items="${obj.incentives}">
             <tr>
             <td><c:out value="${listVar}"/></td>

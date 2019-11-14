@@ -13,6 +13,7 @@ public class IncentiveModel {
 
     public String make;
     public String model;
+    public String dealerId;
     public String[] incentives;
 
     public IncentiveModel() {
@@ -57,6 +58,14 @@ public class IncentiveModel {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(String dealerId) {
+        this.dealerId = dealerId;
     }
 
     public String[] getIncentives() {

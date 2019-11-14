@@ -6,17 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-import com.microservices.Insentiveservice.model.IncentiveInfoResponseModel;
+import com.microservices.Insentiveservice.dao.Incentiverepo;
+import com.microservices.Insentiveservice.model.IncentiveModel;
 
-import java.util.Optional;
+import java.util.List;
+
 
 @RestController
 public class IncentiveController {
 
+
     @Autowired
-    private RestTemplate restTemplate;
+    Incentiverepo repo;
 
     @RequestMapping("/incentive")
     public ModelAndView renderForm() {
@@ -26,21 +28,22 @@ public class IncentiveController {
         return mv;
     }
 
-    @RequestMapping(value = "/saveDetails", method = RequestMethod.POST)
+    @RequestMapping(value = "/getDetails", method = RequestMethod.POST)
     public ModelAndView saveDetails(@RequestParam("vehicleMake") String vehicleMake, @RequestParam("vehicleModel") String vehicleModel,
                                     ModelMap modelMap) {
 
-
+        System.out.println("Make Model "+vehicleMake+ vehicleModel);
         ModelAndView mv = new ModelAndView();
         if(vehicleMake.length()==0||vehicleModel.length()==0) {
             modelMap.put("emptyMsg", "Please enter all the fields");
             mv.setViewName("formPage");
         }
         else {
-            IncentiveInfoResponseModel response = restTemplate.getForObject("http://IncentiveserviceAPI/incentivedetails?make="+vehicleMake+"&model="+vehicleModel,IncentiveInfoResponseModel.class);
-            System.out.println(response.toString());
-            modelMap.put("incentiveObj", response.getResponse());
-           // System.out.println(response.getResponse().size());
+//          IncentiveInfoResponseModel response = restTemplate.getForObject("http://IncentiveserviceAPI/incentivedetails?make="+vehicleMake+"&model="+vehicleModel,IncentiveInfoResponseModel.class);
+
+            List<IncentiveModel> model = repo.findByMakeModel(vehicleMake, vehicleModel);
+            System.out.println("FOUND DATA IS "+model);
+            modelMap.put("incentiveObj", model);
             modelMap.put("make", vehicleMake);
             modelMap.put("model", vehicleModel);
             mv.setViewName("displayIncentivePage");
