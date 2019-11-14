@@ -21,7 +21,6 @@ public class VehicleController {
     @RequestMapping("/compare")
     public ModelAndView comm(@RequestParam("makeone") String make1, @RequestParam("modelone") String model1, @RequestParam("maketwo") String make2, @RequestParam("modeltwo") String model2)
      {
-        System.out.println(make1);
         Object vehicleone = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make1 + "&model=" + model1, Object.class);
         Object vehicletwo = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make2 + "&model=" + model2, Object.class);
         ModelAndView mv = new ModelAndView("display");
