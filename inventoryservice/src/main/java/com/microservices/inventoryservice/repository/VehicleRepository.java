@@ -1,6 +1,6 @@
-package com.microservices.partservice.repository;
+package com.microservices.inventoryservice.repository;
 
-import com.microservices.partservice.model.Vehicle;
+import com.microservices.inventoryservice.model.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.microservices.partservice.model;
+package com.microservices.inventoryservice.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -5,11 +5,9 @@
 </head>
 <body>
 
-    <form method="GET" action="${contextPath}/partinfo">
+    <form method="GET" action="${contextPath}/dealerinfo">
 
-                <input type="text" name="make" placeholder="Enter Make" autofocus="true"></input>
-
-                <input type="text" name="model" placeholder="Enter Model"></input>
+                <input type="text" name="dealerid" placeholder="Enter Dealerid" autofocus="true"></input>
                  <button type="submit">Search</button>
 
 

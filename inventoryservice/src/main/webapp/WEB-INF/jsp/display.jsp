@@ -8,6 +8,7 @@
 
         <body>
             <h1>Part Service</h1>
+            <c:forEach var="vehicle" items="${vehicles}">
             <table>
             <tr>
             <th>Part</th>
@@ -49,4 +50,6 @@
                                   <td>Dimensions</td>
                                   <td><c:out value="${vehicle.dimensions}"/></td>
                              </tr>
+                             </table>
+                             </c:forEach>
         </body>
