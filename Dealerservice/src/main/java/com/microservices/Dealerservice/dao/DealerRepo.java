@@ -2,10 +2,10 @@ package com.microservices.Dealerservice.dao;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import com.microservices.Dealerservice.model.DealerInfo;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
+
+import com.microservices.Dealerservice.model.DealerInfo;
 
 @Repository
 public interface DealerRepo extends CrudRepository<DealerInfo, String> {
