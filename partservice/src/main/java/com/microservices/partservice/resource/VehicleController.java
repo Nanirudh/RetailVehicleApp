@@ -25,6 +25,12 @@ public class VehicleController {
         return map;
     }
 
+    @GetMapping("/partser")
+    public Object getparts(@RequestParam("make") String make, @RequestParam("model") String model) {
+        Vehicle vehicle = vehicleRepository.findByMakeAndModel(make, model);
+        return (Object)vehicle;
+    }
+
     @GetMapping("/partcompare")
     public Vehicle getpart(@RequestParam("make") String make, @RequestParam("model") String model) {
         Vehicle list = vehicleRepository.findByMakeAndModel(make, model);

@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
-    @Query(value = "SELECT * FROM cardata WHERE Make = ?1 AND Model = ?2", nativeQuery = true)
+    @Query(value = "SELECT * FROM price WHERE Make = ?1 AND Model = ?2", nativeQuery = true)
     Vehicle findByMakeAndModel(String make, String model);
 
 }
