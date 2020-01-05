@@ -1,11 +1,10 @@
-package com.microservices.partservice.model;
+package com.example.configservice.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Vehicle {
-
 
     private String make;
     @Id
@@ -17,18 +16,9 @@ public class Vehicle {
     private int numdoors;
     private String topspeed;
     private String dimensions;
-    private String dealerid;
-
-    public Vehicle() {
-
-    }
 
 
-    public String getModel() {
-        return model;
-    }
-
-    public Vehicle(String make, String model, String enginecapacity, String enginepower, String fueltype, int numgears, int numdoors, String topspeed, String dimensions, String dealerid) {
+    public Vehicle(String make, String model, String enginecapacity, String enginepower, String fueltype, int numgears, int numdoors, String topspeed, String dimensions) {
         this.make = make;
         this.model = model;
         this.enginecapacity = enginecapacity;
@@ -38,7 +28,11 @@ public class Vehicle {
         this.numdoors = numdoors;
         this.topspeed = topspeed;
         this.dimensions = dimensions;
-        this.dealerid = dealerid;
+    }
+
+
+    public Vehicle() {
+
     }
 
     public String getMake() {
@@ -49,6 +43,9 @@ public class Vehicle {
         this.make = make;
     }
 
+    public String getModel() {
+        return model;
+    }
 
     public void setModel(String model) {
         this.model = model;
@@ -108,14 +105,6 @@ public class Vehicle {
 
     public void setDimensions(String dimensions) {
         this.dimensions = dimensions;
-    }
-
-    public String getDealerid() {
-        return dealerid;
-    }
-
-    public void setDealerid(String dealerid) {
-        this.dealerid = dealerid;
     }
 
 }

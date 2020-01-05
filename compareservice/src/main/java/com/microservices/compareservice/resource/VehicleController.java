@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 @RestController
 public class VehicleController {
@@ -27,6 +30,18 @@ public class VehicleController {
         mv.addObject("vehicleone",vehicleone);
         mv.addObject("vehicletwo",vehicletwo);
         return mv;
+    }
+
+
+    @RequestMapping("/compareser")
+    public Object[] comp(@RequestParam("makeone") String make1, @RequestParam("modelone") String model1, @RequestParam("maketwo") String make2, @RequestParam("modeltwo") String model2)
+    {
+        Object vehicleone = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make1 + "&model=" + model1, Object.class);
+        Object vehicletwo = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make2 + "&model=" + model2, Object.class);
+        Object[] obj = new Object[2];
+        obj[0] = vehicleone;
+        obj[1] = vehicletwo;
+        return obj;
     }
 
 

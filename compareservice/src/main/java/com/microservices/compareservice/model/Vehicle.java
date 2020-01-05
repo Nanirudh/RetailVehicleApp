@@ -6,8 +6,8 @@ import javax.persistence.Id;
 @Entity
 public class Vehicle {
 
-    @Id
     private String make;
+    @Id
     private String model;
     private String enginecapacity;
     private String enginepower;

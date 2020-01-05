@@ -15,15 +15,21 @@ import java.util.List;
 public class VehicleController {
 
     @Autowired
-    private RestTemplate restTemplate;
+    VehicleRepository vehicleRepository;
 
     @GetMapping("/getprice")
     public ModelAndView getpriceinfo(@RequestParam("make") String make, @RequestParam("model") String model) {
-
-        Object vehicle = restTemplate.getForObject("http://localhost:8095/priceinfo?make=" + make + "&model=" + model, Object.class);
+        Vehicle vehicle = vehicleRepository.findByMakeAndModel(make,model);
         ModelAndView mv = new ModelAndView("display");
         mv.addObject("vehicle",vehicle);
         return mv;
+    }
+
+
+    @GetMapping("/pricingser")
+    public Object getprice(@RequestParam("make") String make, @RequestParam("model") String model) {
+        Vehicle vehicle = vehicleRepository.findByMakeAndModel(make,model);
+        return vehicle;
     }
 
 }

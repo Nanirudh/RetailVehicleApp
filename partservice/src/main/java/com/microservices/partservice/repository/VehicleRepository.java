@@ -9,12 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
+public interface VehicleRepository extends CrudRepository<Vehicle, Integer> {
 
     @Query(value = "SELECT * FROM cardata WHERE make = ?1 AND model = ?2", nativeQuery = true)
     Vehicle findByMakeAndModel(String make, String model);
 
-    @Query(value = "SELECT * FROM cardata WHERE dealerid = 1", nativeQuery = true)
+
+    @Query(value = "SELECT * FROM cardata WHERE dealerid = ?1", nativeQuery = true)
     List<Vehicle>findBydealerid(String did);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 @RestController
@@ -24,12 +25,29 @@ public class VehicleController {
         return map;
     }
 
+    @GetMapping("/partser")
+    public Object getparts(@RequestParam("make") String make, @RequestParam("model") String model) {
+        Vehicle vehicle = vehicleRepository.findByMakeAndModel(make, model);
+        return (Object)vehicle;
+    }
+
     @GetMapping("/partcompare")
     public Vehicle getpart(@RequestParam("make") String make, @RequestParam("model") String model) {
         Vehicle list = vehicleRepository.findByMakeAndModel(make, model);
         return list;
     }
 
+
+    @GetMapping("/getvehicles")
+    public List<Vehicle> getpart(@RequestParam("dealerid") String id) {
+        int vid = Integer.parseInt(id);
+        System.out.println("vid is "+vid);
+        List<Vehicle> list = vehicleRepository.findByDealerid(vid);
+     for(int i = 0; i < list.size(); i++) {
+         System.out.println(list.get(i).getMake() + " " + list.get(i).getModel() + " " + list.get(i).getEnginepower() + " " + list.get(i).getEnginecapacity());
+     }
+        return list;
+    }
 
 
 
