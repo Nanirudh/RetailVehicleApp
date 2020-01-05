@@ -28,7 +28,7 @@ public class IncentiveController {
         return mv;
     }
 
-    @RequestMapping(value = "/getDetails", method = RequestMethod.POST)
+    @RequestMapping(value = "/incentivedetails", method = RequestMethod.POST)
     public ModelAndView saveDetails(@RequestParam("vehicleMake") String vehicleMake, @RequestParam("vehicleModel") String vehicleModel,
                                     ModelMap modelMap) {
 

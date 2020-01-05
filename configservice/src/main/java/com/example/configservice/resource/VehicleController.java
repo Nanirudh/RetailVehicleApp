@@ -2,12 +2,11 @@ package com.example.configservice.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 
 @RestController
 public class VehicleController {
@@ -45,6 +44,26 @@ public class VehicleController {
         Object obj = restTemplate.getForObject("http://localhost:8094/pricingser?make=" + make + "&model=" + model, Object.class);
         return obj;
     }
+
+    @GetMapping("dealerapi")
+    public Object dealerInfo(@RequestParam("Country") String country, @RequestParam("City") String city) {
+        Object obj = restTemplate.getForObject("http://localhost:8099/dealerdetails?Country=" + country + "&City=" + city, Object.class);
+        return obj;
+    }
+
+    @GetMapping("incentiveapi")
+    public Object incentiveInfo(@RequestParam("vehicleMake") String vehicleMake, @RequestParam("vehicleModel") String vehicleModel) {
+        Object obj = restTemplate.getForObject("http://localhost:8191/incentivedetails?vehicleMake=" + vehicleMake + "&vehicleModel=" + vehicleModel, Object.class);
+        return obj;
+    }
+
+    @PostMapping ("leadapi")
+    public Object uploadLead(@RequestParam("uid") String userid, @RequestParam("make") String make, @RequestParam("model") String model, @RequestParam("orderitem") String orderItem,
+                             @RequestParam("quantity") String quantity) {
+        Object obj = restTemplate.getForObject("http://localhost:8095/savelead?uid=" + userid + "&make=" + make + "&model=" + model +"&orderitem=" + orderItem + "&quantity=" + quantity, Object.class);
+        return obj;
+    }
+
 
 }
 

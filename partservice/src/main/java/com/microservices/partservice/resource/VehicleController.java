@@ -40,9 +40,8 @@ public class VehicleController {
 
     @GetMapping("/getvehicles")
     public List<Vehicle> getpart(@RequestParam("dealerid") String id) {
-        int vid = Integer.parseInt(id);
-        System.out.println("vid is "+vid);
-        List<Vehicle> list = vehicleRepository.findByDealerid(vid);
+
+        List<Vehicle> list = vehicleRepository.findBydealerid(id);
      for(int i = 0; i < list.size(); i++) {
          System.out.println(list.get(i).getMake() + " " + list.get(i).getModel() + " " + list.get(i).getEnginepower() + " " + list.get(i).getEnginecapacity());
      }
