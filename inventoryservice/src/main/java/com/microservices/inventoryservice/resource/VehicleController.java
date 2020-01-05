@@ -19,9 +19,16 @@ public class VehicleController {
 
     @GetMapping("/dealerinfo")
     public List<Object> getpartinfo(@RequestParam("dealerid") String id) {
-        List<Object> vehicle = restTemplate.getForObject("http://localhost:8091/getvehicles?dealerid=" + id, List.class);
-        /*ModelAndView mv = new ModelAndView("display");
-        mv.addObject("vehicles",vehicle);
-        return mv;*/return vehicle;
+        System.out.println(restTemplate.getForObject("http://localhost:8091/getvehicles?dealerid=" + id, List.class));
+//        List<Object> vehicle = restTemplate.getForObject("http://localhost:8091/getvehicles?dealerid=" + id, List.class);
+//        Object obj;
+//      for(int i=0;i<vehicle.size();i++) {
+//          System.out.println(vehicle.get(i).toString() );
+//      }
+//        System.out.println("lol");
+//        /*ModelAndView mv = new ModelAndView("display");
+//        mv.addObject("vehicles",vehicle);
+//        return mv;*/return vehicle;
+        return null;
     }
 }

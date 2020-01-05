@@ -6,8 +6,9 @@ import javax.persistence.Id;
 @Entity
 public class Vehicle {
 
-    @Id
+
     private String make;
+    @Id
     private String model;
     private String enginecapacity;
     private String enginepower;
@@ -16,20 +17,16 @@ public class Vehicle {
     private int numdoors;
     private String topspeed;
     private String dimensions;
+    private String dealerid;
 
 
-    public Vehicle(String make, String model, String enginecapacity, String enginepower, String fueltype, int numgears, int numdoors, String topspeed, String dimensions) {
-        this.make = make;
-        this.model = model;
-        this.enginecapacity = enginecapacity;
-        this.enginepower = enginepower;
-        this.fueltype = fueltype;
-        this.numgears = numgears;
-        this.numdoors = numdoors;
-        this.topspeed = topspeed;
-        this.dimensions = dimensions;
+    public String getDealerid() {
+        return dealerid;
     }
 
+    public void setDealerid(String dealerid) {
+        this.dealerid = dealerid;
+    }
 
     public Vehicle() {
 
