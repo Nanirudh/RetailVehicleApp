@@ -27,7 +27,7 @@ public class VehicleController {
 
 
     @GetMapping("/pricingser")
-    public Object getprice(@RequestParam("make") String make, @RequestParam("model") String model) {
+    public Vehicle getprice(@RequestParam("make") String make, @RequestParam("model") String model) {
         Vehicle vehicle = vehicleRepository.findByMakeAndModel(make,model);
         return vehicle;
     }

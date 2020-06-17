@@ -28,29 +28,25 @@ public class IncentiveController {
         return mv;
     }
 
-    @RequestMapping(value = "/incentivedetails", method = RequestMethod.POST)
-    public ModelAndView saveDetails(@RequestParam("vehicleMake") String vehicleMake, @RequestParam("vehicleModel") String vehicleModel,
-                                    ModelMap modelMap) {
+    @RequestMapping(value = "/incentivedetails", method = RequestMethod.GET)
+    public List<IncentiveModel> saveDetails(@RequestParam("vehicleMake") String vehicleMake, @RequestParam("vehicleModel") String vehicleModel,
+                                            ModelMap modelMap) {
 
-        System.out.println("Make Model "+vehicleMake+ vehicleModel);
-        ModelAndView mv = new ModelAndView();
-        if(vehicleMake.length()==0||vehicleModel.length()==0) {
-            modelMap.put("emptyMsg", "Please enter all the fields");
-            mv.setViewName("formPage");
-        }
-        else {
+//        System.out.println("Make Model "+vehicleMake+ vehicleModel);
+//        ModelAndView mv = new ModelAndView();
+//        if(vehicleMake.length()==0||vehicleModel.length()==0) {
+//            modelMap.put("emptyMsg", "Please enter all the fields");
+//            mv.setViewName("formPage");
+//        }
+//        else {
 //          IncentiveInfoResponseModel response = restTemplate.getForObject("http://IncentiveserviceAPI/incentivedetails?make="+vehicleMake+"&model="+vehicleModel,IncentiveInfoResponseModel.class);
 
             List<IncentiveModel> model = repo.findByMakeModel(vehicleMake, vehicleModel);
             System.out.println("FOUND DATA IS "+model);
-            modelMap.put("incentiveObj", model);
-            modelMap.put("make", vehicleMake);
-            modelMap.put("model", vehicleModel);
-            mv.setViewName("displayIncentivePage");
 
 
-        }
 
-        return mv;
+       // }
+        return model;
     }
 }

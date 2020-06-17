@@ -42,9 +42,9 @@ public class VehicleController {
     public List<Vehicle> getpart(@RequestParam("dealerid") String id) {
 
         List<Vehicle> list = vehicleRepository.findBydealerid(id);
-     for(int i = 0; i < list.size(); i++) {
-         System.out.println(list.get(i).getMake() + " " + list.get(i).getModel() + " " + list.get(i).getEnginepower() + " " + list.get(i).getEnginecapacity());
-     }
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getMake() + " " + list.get(i).getModel() + " " + list.get(i).getEnginepower() + " " + list.get(i).getEnginecapacity());
+        }
         return list;
     }
 

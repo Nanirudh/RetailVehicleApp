@@ -1,10 +1,7 @@
 package com.microservices.Dealerservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.microservices.Dealerservice.model.DealerInfo;
@@ -27,13 +24,13 @@ public class DealerController {
         return mv;
     }
 
-    @PostMapping("/dealerdetails")
-    public ModelAndView displayDetails(@RequestParam("Country") String country, @RequestParam("City") String city, ModelMap modelMap) {
-        ModelAndView mv = new ModelAndView();
-        if(country.length()==0) {
-            modelMap.put("emptyMsg", "Please enter the country field");
-            mv.setViewName("DealerForm");
-        } else {
+    @GetMapping("/dealerdetails")
+    public List<DealerInfo> displayDetails(@RequestParam("country") String country, @RequestParam("city") String city, ModelMap modelMap) {
+//        ModelAndView mv = new ModelAndView();
+//        if(country.length()==0) {
+//            modelMap.put("emptyMsg", "Please enter the country field");
+//            mv.setViewName("DealerForm");
+//        } else {
             System.out.println("city is "+city);
             System.out.println("country is "+country);
             List<DealerInfo> dealerInfoList;
@@ -43,15 +40,17 @@ public class DealerController {
                 dealerInfoList = repo.findByCountry(country);
             }
 
-            if(dealerInfoList.size()==0) {
-                modelMap.put("Status","NotFound");
-            } else {
-                modelMap.put("Status","Found");
-            }
+            return dealerInfoList;
 
-            modelMap.put("DealerList", dealerInfoList);
-            mv.setViewName("DealerLocationDisplay");
-        }
-        return mv;
+//            if(dealerInfoList.size()==0) {
+//                modelMap.put("Status","NotFound");
+//            } else {
+//                modelMap.put("Status","Found");
+//            }
+//
+//            modelMap.put("DealerList", dealerInfoList);
+//            mv.setViewName("DealerLocationDisplay");
+//        }
+//        return mv;
     }
 }

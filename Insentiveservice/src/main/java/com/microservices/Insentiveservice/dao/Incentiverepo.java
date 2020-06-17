@@ -1,12 +1,14 @@
 package com.microservices.Insentiveservice.dao;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import com.microservices.Insentiveservice.model.IncentiveModel;
-import java.util.ArrayList;
+import com.microservices.Insentiveservice.model.IncentiveKey;
+import java.util.List;
 
-public interface Incentiverepo extends MongoRepository<IncentiveModel, ObjectId> {
+@Repository
+public interface Incentiverepo extends  JpaRepository<IncentiveModel, IncentiveKey> {
 
-    @Query(value=" { Make: ?0, Model: { $regex: ?1 } }")
-    public ArrayList<IncentiveModel> findByMakeModel(String make, String model);
+    @Query(value = "SELECT * FROM incentive_info WHERE make=?1 and model=?2", nativeQuery = true)
+    List<IncentiveModel> findByMakeModel(String make, String model);
 }

@@ -21,23 +21,24 @@ public class VehicleController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping("/compare")
-    public ModelAndView comm(@RequestParam("makeone") String make1, @RequestParam("modelone") String model1, @RequestParam("maketwo") String make2, @RequestParam("modeltwo") String model2)
-     {
-        Object vehicleone = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make1 + "&model=" + model1, Object.class);
-        Object vehicletwo = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make2 + "&model=" + model2, Object.class);
-        ModelAndView mv = new ModelAndView("display");
-        mv.addObject("vehicleone",vehicleone);
-        mv.addObject("vehicletwo",vehicletwo);
-        return mv;
-    }
+//    @RequestMapping("/compare")
+//    public ModelAndView comm(@RequestParam("makeone") String make1, @RequestParam("modelone") String model1, @RequestParam("maketwo") String make2, @RequestParam("modeltwo") String model2)
+//     {
+//        Object vehicleone = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make1 + "&model=" + model1, Object.class);
+//        Object vehicletwo = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make2 + "&model=" + model2, Object.class);
+//        ModelAndView mv = new ModelAndView("display");
+//        mv.addObject("vehicleone",vehicleone);
+//        mv.addObject("vehicletwo",vehicletwo);
+//        return mv;
+//    }
 
 
     @RequestMapping("/compareser")
     public Object[] comp(@RequestParam("makeone") String make1, @RequestParam("modelone") String model1, @RequestParam("maketwo") String make2, @RequestParam("modeltwo") String model2)
     {
-        Object vehicleone = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make1 + "&model=" + model1, Object.class);
-        Object vehicletwo = restTemplate.getForObject("http://localhost:8091/partcompare?make=" + make2 + "&model=" + model2, Object.class);
+        System.out.println("hello\n");
+        Object vehicleone = restTemplate.getForObject("http://partservice/partcompare?make=" + make1 + "&model=" + model1, Object.class);
+        Object vehicletwo = restTemplate.getForObject("http://partservice/partcompare?make=" + make2 + "&model=" + model2, Object.class);
         Object[] obj = new Object[2];
         obj[0] = vehicleone;
         obj[1] = vehicletwo;

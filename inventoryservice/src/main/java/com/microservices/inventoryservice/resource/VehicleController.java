@@ -18,8 +18,8 @@ public class VehicleController {
     RestTemplate restTemplate;
 
     @GetMapping("/inventoryser")
-    public List<Object> getpartinfo(@RequestParam("dealerid") String id) {
-        System.out.println(restTemplate.getForObject("http://localhost:8091/getvehicles?dealerid=" + id, List.class));
+    public List<Vehicle> getpartinfo(@RequestParam("dealerid") String id) {
+        List<Vehicle>dealerVehicleList =  restTemplate.getForObject("http://partservice/getvehicles?dealerid=" + id, List.class);
 //        List<Object> vehicle = restTemplate.getForObject("http://localhost:8091/getvehicles?dealerid=" + id, List.class);
 //        Object obj;
 //      for(int i=0;i<vehicle.size();i++) {
@@ -29,6 +29,6 @@ public class VehicleController {
 //        /*ModelAndView mv = new ModelAndView("display");
 //        mv.addObject("vehicles",vehicle);
 //        return mv;*/return vehicle;
-        return null;
+        return dealerVehicleList;
     }
 }

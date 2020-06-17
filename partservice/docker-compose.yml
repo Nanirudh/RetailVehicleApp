@@ -1,0 +1,41 @@
+version: "3"
+services:
+  configservice:
+    image: configservice
+    ports:
+      - "8100:8100"
+    networks:
+      - mysql-service
+    depends_on:
+      - mysql-db
+      - partservice
+      - eurekaservice
+
+  partservice:
+    image: partservice
+    ports:
+      - "8106:8106"
+    networks:
+      - mysql-service
+    depends_on:
+      - mysql-db
+      - eurekaservice
+
+  eurekaservice:
+    image: eurekaserver
+    ports:
+      - "8761:8761"
+    networks:
+      - mysql-service
+
+
+  mysql-db:
+    image: mysql
+    networks:
+      - mysql-service
+    environment:
+      - MYSQL_ROOT_PASSWORD=MyDb123
+      - MYSQL_DATABASE=DB
+
+networks:
+  mysql-service:

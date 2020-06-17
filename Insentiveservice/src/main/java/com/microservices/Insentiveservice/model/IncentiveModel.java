@@ -1,79 +1,38 @@
 package com.microservices.Insentiveservice.model;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.Arrays;
+import javax.persistence.Entity;
+import javax.persistence.EmbeddedId;
 
-@Document(collection = "IncentiveModel")
+@Entity
 public class IncentiveModel {
 
-    @Id
-    public ObjectId _id;
+   @EmbeddedId private IncentiveKey key;
+    String incentive;
 
-    public String make;
-    public String model;
-    public String dealerId;
-    public String[] incentives;
+    public IncentiveModel() {}
 
-    public IncentiveModel() {
+    public IncentiveKey getKey() {
+        return key;
     }
 
-    public IncentiveModel(ObjectId _id, String make, String model, String[] incentives) {
-        this._id = _id;
-        this.make = make;
-        this.model = model;
-        this.incentives = incentives;
+    public void setKey(IncentiveKey key) {
+        this.key = key;
+    }
+
+    public String getIncentive() {
+        return incentive;
+    }
+
+    public void setIncentive(String incentive) {
+        this.incentive = incentive;
     }
 
     @Override
     public String toString() {
         return "IncentiveModel{" +
-                "_id=" + _id +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", incentives=" + Arrays.toString(incentives) +
+                "key=" + key +
+                ", incentive='" + incentive + '\'' +
                 '}';
-    }
-
-    public ObjectId get_id() {
-        return _id;
-    }
-
-    public void set_id(ObjectId _id) {
-        this._id = _id;
-    }
-
-    public String getMake() {
-        return make;
-    }
-
-    public void setMake(String make) {
-        this.make = make;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getDealerId() {
-        return dealerId;
-    }
-
-    public void setDealerId(String dealerId) {
-        this.dealerId = dealerId;
-    }
-
-    public String[] getIncentives() {
-        return incentives;
-    }
-
-    public void setIncentives(String[] incentives) {
-        this.incentives = incentives;
     }
 }
 

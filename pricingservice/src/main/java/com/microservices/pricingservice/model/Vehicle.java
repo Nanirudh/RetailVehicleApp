@@ -6,29 +6,30 @@ import javax.persistence.Id;
 @Entity
 public class Vehicle {
 
-    @Id
+
     private String make;
+    @Id
     private String model;
     private int engine;
     private int steering;
     private int seats;
     private int battery;
-    private int headlights;
-    private int tyres;
+    private int headlight;
+    private int tyre;
     private int fueltank;
     private int body;
     private int gearbox;
     private int total;
 
-    public Vehicle(String make, String model, int engine, int steering, int seats, int battery, int headlights, int tyres, int fueltank, int body, int gearbox, int total) {
+    public Vehicle(String make, String model, int engine, int steering, int seats, int battery, int headlight, int tyre, int fueltank, int body, int gearbox, int total) {
         this.make = make;
         this.model = model;
         this.engine = engine;
         this.steering = steering;
         this.seats = seats;
         this.battery = battery;
-        this.headlights = headlights;
-        this.tyres = tyres;
+        this.headlight = headlight;
+        this.tyre = tyre;
         this.fueltank = fueltank;
         this.body = body;
         this.gearbox = gearbox;
@@ -89,19 +90,19 @@ public class Vehicle {
     }
 
     public int getHeadlights() {
-        return headlights;
+        return headlight;
     }
 
-    public void setHeadlights(int headlights) {
-        this.headlights = headlights;
+    public void setHeadlights(int headlight) {
+        this.headlight = headlight;
     }
 
     public int getTyres() {
-        return tyres;
+        return tyre;
     }
 
     public void setTyres(int tyres) {
-        this.tyres = tyres;
+        this.tyre = tyres;
     }
 
     public int getFueltank() {

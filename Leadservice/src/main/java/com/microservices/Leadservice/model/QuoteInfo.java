@@ -1,4 +1,5 @@
 package com.microservices.Leadservice.model;
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,15 +8,20 @@ import javax.persistence.Table;
 public class QuoteInfo {
 
     @Id
+    @Column(name = "uid")
     String uid;
+    @Column(name = "make")
     String make;
+    @Column(name = "model")
     String model;
+    @Column(name = "orderitem")
     String orderitem;
-    Integer quantity;
+    @Column(name = "quantity")
+    String quantity;
 
     public QuoteInfo() {}
 
-    public QuoteInfo(String uid, String make, String model, String orderitem, Integer quantity) {
+    public QuoteInfo(String uid, String make, String model, String orderitem, String quantity) {
         this.uid = uid;
         this.make = make;
         this.model = model;
@@ -55,11 +61,11 @@ public class QuoteInfo {
         this.orderitem = orderitem;
     }
 
-    public Integer getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 }
